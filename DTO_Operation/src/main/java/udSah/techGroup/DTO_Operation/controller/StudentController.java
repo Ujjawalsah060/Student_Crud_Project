@@ -24,7 +24,7 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    @PostMapping("/create")
+    @PostMapping
 
     public ResponseEntity<CreatedStudentResponseDto> createStudent(
            @Valid @RequestBody CreatedStudentRequestDto studentRequestDto){
@@ -37,7 +37,7 @@ public class StudentController {
                 .body(createdStudentRecord);
     }
 
-    @GetMapping("/get/{id}")
+    @GetMapping("{id}")
     public ResponseEntity<CreatedStudentResponseDto> getOneStudent(@PathVariable Long id){
         CreatedStudentResponseDto studentResp = studentService.getOneStudent(id);
         if(studentResp == null){
@@ -47,24 +47,20 @@ public class StudentController {
         return ResponseEntity.ok(studentResp);
     }
 
-    @GetMapping("/getAll")
+    @GetMapping
     public ResponseEntity<List<CreatedStudentResponseDto>> getAllStudent(){
         List<CreatedStudentResponseDto> studentList = studentService.getAllStudent();
         return ResponseEntity.ok(studentList);
     }
 
 
-    @PutMapping("/update/{id}")
+    @PutMapping("{id}")
     public ResponseEntity<UpdateStudentResponseDto> updateStudent(
             @PathVariable Long id,
             @RequestBody UpdateStudentRequestDto studentReq) {
 
         UpdateStudentResponseDto updatedStudent =
                 studentService.updateStudent(id, studentReq);
-
-        if (updatedStudent == null) {
-            return ResponseEntity.notFound().build();
-        }
 
         return ResponseEntity.ok(updatedStudent);
     }
@@ -79,7 +75,7 @@ public class StudentController {
 
     @PatchMapping("/delete-soft")
     public ResponseEntity<String> deleteStudentSoftly(@RequestParam Long id) {
-        studentService.deleteStudentSoftly(id);
+        studentService.studentToBeDeletedSoftly (id);
 
         return ResponseEntity.noContent().build();
     }

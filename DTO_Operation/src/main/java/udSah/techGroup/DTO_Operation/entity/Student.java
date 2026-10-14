@@ -14,7 +14,7 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
-    private String email;
+    private static String email;
     private String subject;
     private int age;
     private Boolean deleted;
@@ -37,7 +37,7 @@ public class Student {
         this.name = name;
     }
 
-    public String getEmail() {
+    public static String getEmail() {
         return email;
     }
 
@@ -84,4 +84,8 @@ public class Student {
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
     }
+
+
+
+
 }

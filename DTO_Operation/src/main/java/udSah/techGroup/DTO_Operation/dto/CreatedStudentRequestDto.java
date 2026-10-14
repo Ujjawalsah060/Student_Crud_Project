@@ -13,10 +13,12 @@ public class CreatedStudentRequestDto {
     @Email
     private String email;
 
-    @NotBlank(message = "Age is required")
-    @Min(value = 18, message = "Student must be greated than or equal to 18 years")
+
+    @NotBlank(message = "subject is necessary")
     private  String subject;
 
+
+    @NotBlank(message = "Age is required")
     @NotNull(message = "age must be greater than equal to 18 years")
     private Integer age;
 
